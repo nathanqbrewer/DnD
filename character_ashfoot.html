@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ashfoot's Character Sheet</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 2em auto; }
+    label { display: block; margin-top: 1em; }
+    input[type="number"] { width: 4em; }
+    .section { margin-bottom: 2em; }
+    .inline { display: inline-block; margin-right: 1em; }
+    button { margin-top: 1em; }
+    a { color: #3366cc; }
+  </style>
+</head>
+<body>
+  <h1>Ashfoot's Character Sheet</h1>
+  <nav>
+    <a href="spells.md" target="_blank">Shared Spells List</a> |
+    <a href="equipment.md" target="_blank">Equipment Reference</a> |
+    <a href="rules.md" target="_blank">Rules</a>
+  </nav>
+  <form id="charSheet">
+    <div class="section">
+      <label>Name: <input type="text" id="name" value="Ashfoot"></label>
+      <label>Race: <input type="text" id="race" value=""></label>
+      <label>Class: <input type="text" id="class" value=""></label>
+      <label>Level: <input type="number" id="level" min="1" value="1"></label>
+    </div>
+    <div class="section">
+      <strong>Ability Scores</strong>
+      <div>
+        <span class="inline">STR <input type="number" id="str" min="1" value="10"></span>
+        <span class="inline">DEX <input type="number" id="dex" min="1" value="10"></span>
+        <span class="inline">CON <input type="number" id="con" min="1" value="10"></span>
+        <span class="inline">INT <input type="number" id="int" min="1" value="10"></span>
+        <span class="inline">WIS <input type="number" id="wis" min="1" value="10"></span>
+        <span class="inline">CHA <input type="number" id="cha" min="1" value="10"></span>
+      </div>
+    </div>
+    <div class="section">
+      <label>HP: <input type="number" id="hp" min="0" value="0"></label>
+      <label>Max HP: <input type="number" id="max_hp" min="0" value="0"></label>
+      <label>AC: <input type="number" id="ac" min="0" value="10"></label>
+    </div>
+    <div class="section">
+      <strong>Saves</strong>
+      <div>
+        <span class="inline">Fort <input type="number" id="fort" value="0"></span>
+        <span class="inline">Ref <input type="number" id="ref" value="0"></span>
+        <span class="inline">Will <input type="number" id="will" value="0"></span>
+      </div>
+    </div>
+    <div class="section">
+      <label>Equipment:</label>
+      <textarea id="equipment" rows="3" cols="60"></textarea>
+    </div>
+    <div class="section">
+      <label>Feats:</label>
+      <textarea id="feats" rows="2" cols="60"></textarea>
+    </div>
+    <div class="section">
+      <label>Spells:</label>
+      <textarea id="spells" rows="2" cols="60"></textarea>
+    </div>
+    <div class="section">
+      <label>Background/Notes:</label>
+      <textarea id="background" rows="2" cols="60"></textarea>
+    </div>
+    <button type="button" onclick="saveSheet()">Save</button>
+    <button type="button" onclick="loadSheet()">Load</button>
+    <button type="button" onclick="clearSheet()">Clear</button>
+  </form>
+  <script>
+    const SHEET_KEY = "ashfoot_sheet";
+    function saveSheet() {
+      const fields = [
+        'name', 'race', 'class', 'level',
+        'str', 'dex', 'con', 'int', 'wis', 'cha',
+        'hp', 'max_hp', 'ac', 'fort', 'ref', 'will',
+        'equipment', 'feats', 'spells', 'background'
+      ];
+      let data = {};
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        data[id] = el.value;
+      });
+      localStorage.setItem(SHEET_KEY, JSON.stringify(data));
+      alert("Character saved!");
+    }
+    function loadSheet() {
+      const data = JSON.parse(localStorage.getItem(SHEET_KEY) || '{}');
+      Object.keys(data).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = data[id];
+      });
+    }
+    function clearSheet() {
+      if (confirm("Clear all fields and remove saved data?")) {
+        document.getElementById('charSheet').reset();
+        localStorage.removeItem(SHEET_KEY);
+      }
+    }
+    window.onload = loadSheet;
+  </script>
+</body>
+</html>
