@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaja "Ashfoot" Chandra - Character Sheet</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1f2937;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:3rem 1.5rem}
+.grid{display:grid}
+.grid-5{grid-template-columns:repeat(5,1fr)}
+.grid-6{grid-template-columns:repeat(6,1fr)}
+.gap{gap:1rem}
+.card{padding:1rem;border-radius:.5rem;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)}
+.section{background:#f0fdf4}
+.section-purple{background:#faf5ff}
+.section-purple h3{color:#6b21a8}
+.header-card{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:.75rem}
+.stat-col{border-right:1px solid #9ca3af;padding-right:.5rem}
+.stat-col:last-child{border-right:none}
+.chron-silver{background:#f8fafc}
+.chron-purple{background:#faf5ff}
+.chron-red{background:#fef2f2}
+.chron-gray{background:#f9fafb}
+.chron-blue{background:#eff6ff}
+.icon{font-size:3rem;text-align:center;margin-bottom:.5rem}
+.title{font-weight:bold;font-size:1.125rem;margin-bottom:.5rem;border-bottom:1px solid #9ca3af;padding-bottom:.25rem}
+.title-silver{color:#1e293b}
+.title-purple{color:#6b21a8}
+.title-red{color:#991b1b}
+.title-gray{color:#1f2937}
+.title-blue{color:#1e40af}
+h1{font-size:3rem;font-weight:bold;color:#166534;margin-bottom:1.5rem;text-align:center}
+h2{font-size:1.875rem;font-weight:bold;color:#166534;margin-bottom:1rem;text-align:center}
+h3{font-size:1.125rem;font-weight:bold;color:#166534;margin-bottom:.5rem;border-bottom:1px solid #9ca3af;padding-bottom:.25rem}
+.text-green{color:#15803d}
+.text-emerald{color:#047857}
+.text-slate{color:#94a3b8}
+.text-purple{color:#7c3aed}
+.text-purple-light{color:#9333ea}
+.text-amber{color:#d97706}
+.text-red{color:#dc2626}
+.text-green-dark{color:#16a34a}
+.text-gray{color:#374151}
+.text-gray-dark{color:#1f2937}
+.space-y>*+*{margin-top:.5rem}
+.space-y-3>*+*{margin-top:.75rem}
+.mb-2{margin-bottom:.5rem}
+.mb-6{margin-bottom:1.5rem}
+.mb-8{margin-bottom:2rem}
+@media (max-width:768px){
+.grid-6{grid-template-columns:repeat(2,1fr)}
+.grid-5{grid-template-columns:1fr}
+.container{padding:1.5rem}
+h1{font-size:2rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>Gaja "Ashfoot" Chandra</h1>
+<section class="card header-card">
+<div class="grid grid-6 gap">
+<div class="stat-col">
+<div class="text-green mb-2"><strong>BASIC INFO</strong></div>
+<div class="space-y">
+<div><strong>Age</strong>: 213 years</div>
+<div><strong>Race</strong>: Loxodon</div>
+<div><strong>Class</strong>: Druid</div>
+<div><strong>Size</strong>: Medium</div>
+</div>
+</div>
+<div class="stat-col">
+<div class="text-green mb-2"><strong>PHYSICAL</strong></div>
+<div class="space-y">
+<div><strong>Height</strong>: Nearly 8 feet tall</div>
+<div><strong>Skin</strong>: Weathered gray</div>
+<div><strong>Scars</strong>: Ritual marks</div>
+<div><strong>Tusks</strong>: Chipped from grinding</div>
+</div>
+</div>
+<div class="stat-col">
+<div class="text-green mb-2"><strong>LANGUAGES</strong></div>
+<div class="space-y">
+<div><strong>• Common</strong></div>
+<div><strong>• Loxodon</strong></div>
+<div><strong>• Druidic</strong></div>
+</div>
+</div>
+<div class="stat-col">
+<div class="text-green mb-2"><strong>BACKGROUND</strong></div>
+<div class="space-y">
+<div><strong>Origin</strong>: <span class="highlight-text">Mornhollow Enclave</span></div>
+<div><strong>Tragedy</strong>: 12 years ago</div>
+<div><strong>Survivors</strong>: 1 (himself)</div>
+<div><strong>Companion</strong>: <span class="highlight-text">Cinder (owl)</span></div>
+</div>
+</div>
+<div class="stat-col">
+<div class="text-green mb-2"><strong>SPIRITUAL</strong></div>
+<div class="space-y">
+<div><strong>Alignment</strong>: Lawful Neutral</div>
+<div><strong>Deity</strong>: <span class="highlight-text">Selûne (conflicted)</span></div>
+<div><strong>Domain</strong>: Moon, Nature</div>
+<div><strong>Status</strong>: Fallen Oracle</div>
+</div>
+</div>
+<div>
+<div class="text-green mb-2"><strong>SACRED ITEMS</strong></div>
+<div class="space-y">
+<div><strong>Staff</strong>: Living silverleaf oak</div>
+<div><strong>Tome</strong>: Cursed, vine-bound</div>
+<div><strong>Dagger</strong>: Obsidian ritual blade</div>
+</div>
+</div>
+</div>
+</section>
+</header>
+
+<main>
+<section class="mb-8">
+<h2>Character Overview</h2>
+<div class="grid grid-5 gap">
+<div class="card section">
+<h3>Physical Appearance</h3>
+<div class="space-y">
+<p><strong>Stature:</strong> Nearly 8 feet tall, weathered gray skin bearing the weight of years and guilt. Massive frame moves with excessive care despite imposing size.</p>
+<p><strong>Scars & Marks:</strong> Ritualistic scars on trunk and forearms—self-inflicted reminders of his failure. Chips in tusks from nervous grinding during sleepless nights.</p>
+<p><strong>Attire:</strong> <span class="highlight-text">Patched earth-toned robes hide silver thread constellations that map the night sky of Mornhollow's destruction. Each thread catches moonlight like tears.</span></p>
+<p><strong>Voice:</strong> Soft, measured tones hiding constant self-doubt. Every word carefully weighed, as if speech itself might trigger catastrophe.</p>
+</div>
+</div>
+
+<div class="card section">
+<h3>Personality Traits</h3>
+<div class="space-y">
+<p><strong>Mannerisms:</strong> <span class="highlight-text">Refuses all healing for his scars (penance for his sins), keeps obsessive scholarly records of everything, constantly checks on Cinder's location, and flinches at loud sounds or sudden movements.</span></p>
+<p><strong>Ideal:</strong> <span class="highlight-text">Atonement through service to others—perhaps he can prevent what happened to Mornhollow from happening elsewhere.</span></p>
+<p><strong>Bonds:</strong> <span class="highlight-text">Guided by the voices of Mornhollow's dead (or so he believes), fears what Cinder truly represents, and seeks to understand the competing divine influences.</span></p>
+<p><strong>Flaws:</strong> Paranoid about divine manipulation and hidden agendas, pushes potential companions away to "protect" them, and obsesses over signs and omens in everything.</p>
+</div>
+</div>
+
+<div class="card section">
+<h3>Sacred Possessions</h3>
+<div class="space-y">
+<p><strong>Silver-Threaded Tome:</strong> <span class="highlight-text">The cursed book given by Nox, now bound in living vines by Ashfoot's own magic to prevent others from accessing its dangerous contents. Contains the "Grand Conjunction" ritual that destroyed his people. Pages whisper when opened.</span></p>
+<p><strong>Obsidian Dagger:</strong> <span class="highlight-text">Ritual blade used in the final, corrupted ceremony. Its edge still gleams with otherworldly fire that consumed Mornhollow.</span></p>
+<p><strong>Silverleaf Oak Quarterstaff:</strong> <span class="highlight-text">Living wood gifted by Elder Kythara during ordination. Moon phases carved along its length wax and wane with the lunar cycle—his last connection to Selûne's blessing.</span></p>
+</div>
+</div>
+
+<div class="card section">
+<h3>Divine Conflict & Alignment</h3>
+<div class="space-y">
+<p><strong>Lawful Neutral Alignment:</strong> <span class="highlight-text">Once devoutly Lawful Good, Gaja's alignment has shifted to Lawful Neutral through trauma and moral uncertainty. He still follows druidic codes and natural law, but questions everything he once held sacred.</span></p>
+<p><strong class="highlight-text">Selûne vs. Shar:</strong> <span class="highlight-text">Ostensibly still worships Selûne, the moon goddess he served faithfully for centuries. However, Shar's corruption runs deep—the ritual may have created a permanent link between him and the Mistress of the Night. He fears he may be unknowingly serving both.</span></p>
+<p><strong>The Eternal Question:</strong> <span class="highlight-text">Each spell he casts, each companion he helps, each night he survives—are these acts of redemption blessed by Selûne, or further steps in Shar's grand design? This uncertainty defines every moment of his existence.</span></p>
+</div>
+</div>
+
+<div class="card section-purple">
+<h3><span class="highlight-text">Cinder</span> the Owl</h3>
+<div class="space-y">
+<p><strong>Appearance:</strong> Midnight black with silver flecks, bearing mismatched eyes—one yellow promising salvation, one purple-black whispering endings. Always perched nearby, watching both the world and Ashfoot himself.</p>
+<p><strong>Mystical Bond:</strong> <span class="highlight-text">Found among the smoking ruins of Mornhollow, Cinder appeared as if waiting. Though Gaja named the owl, he suspects it had a name long before their meeting—perhaps older than memory itself.</span></p>
+<p><strong>Abilities:</strong> Functions as loyal scout and combat ally with keen senses and silent flight. Tied deeply to Ashfoot's fate and mystical burdens, the owl seems to understand far more than any natural creature should.</p>
+<p><strong>Symbolic Presence:</strong> Represents the duality of Ashfoot's existence—hope and despair, salvation and damnation. The owl's presence both comforts and unnerves, a constant reminder of that fateful night.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="mb-8">
+<h2>The Chronicle of <span class="highlight-text">Mornhollow</span></h2>
+<div class="grid grid-5 gap">
+<div class="card chron-silver">
+<div class="icon">🌙</div>
+<div class="title title-silver highlight-text">Mornhollow (213 Years Ago)</div>
+<div class="space-y-3">
+<p class="highlight-text">Born during a rare lunar eclipse in Mornhollow, a Loxodon enclave hidden deep in ancient forests. The eclipse was seen as a sign—Selûne herself had blessed this child for greatness. As a beloved scholar-priest fluent in Common, Loxodon, and the sacred Druidic tongue, Gaja was groomed from birth to become the next High Oracle of Mornhollow's moon-touched druids.</p>
+<p class="highlight-text">Under Elder Kythara, the wisest of the moon-touched druids, he flourished. During his ordination ceremony, she gifted him a quarterstaff carved from silverleaf oak—living wood that would grow with his spiritual connection to Selûne. She also taught him the secret language of Druidic, binding him to the ancient traditions.</p>
+<p class="highlight-text">For decades, Gaja served as scholar, healer, and spiritual guide. Mornhollow flourished under the guidance of its druids, hidden from the world's troubles, blessed by Selûne's light.</p>
+</div>
+</div>
+
+<div class="card chron-purple">
+<div class="icon">📖</div>
+<div class="title title-purple">The Fall (12 Years Ago)</div>
+<div class="space-y-3">
+<p class="highlight-text">A terrible famine swept through Mornhollow. Crops withered, animals fled, and even the sacred groves began to die. Traditional remedies failed. Selûne's light seemed dim and distant.</p>
+<p class="highlight-text">Gaja delved into forbidden celestial rituals, seeking any way to save his people. In his desperation, he researched texts that wise druids had sealed away for good reason. During his research, she appeared—ethereal, beautiful, with violet eyes that shifted to silver when she smiled. She knew of Mornhollow's crisis before Gaja spoke of it. Her knowledge was unsettling, perfect, wrong.</p>
+<p class="highlight-text">Nox offered a silver-threaded tome, promising the "Grand Conjunction" would heal the land and restore Selûne's favor. The book felt warm to the touch, almost alive. Too desperate to question this miracle, Gaja accepted.</p>
+</div>
+</div>
+
+<div class="card chron-red">
+<div class="icon">🔥</div>
+<div class="title title-red highlight-text">The Grand Conjunction Ritual</div>
+<div class="space-y-3">
+<p class="highlight-text">The ritual began at dawn with all of Mornhollow gathered in the sacred grove. The words felt right, the power real. Selûne's blessing seemed to flow through the silverleaf quarterstaff as Gaja chanted the ancient words from Nox's tome.</p>
+<p class="highlight-text">As the ritual reached its crescendo at midnight, something went horribly wrong. The blessing twisted. Where Selûne's silver light should have flowed, purple-black energy erupted. Shar's influence had corrupted the ritual from within.</p>
+<p class="highlight-text">The tome demanded a final act—a cut with the obsidian dagger to "seal the covenant." Believing he was completing a healing rite, Gaja drew the blade across his palm. Instead of healing, otherworldly fire erupted from the cut, consuming everything in sight. In moments, centuries of druidic wisdom, hundreds of lives, and the entire enclave of Mornhollow were reduced to ash and memory. Gaja awakened alone among the ruins, the sole survivor of his own catastrophic mistake.</p>
+</div>
+</div>
+
+<div class="card chron-gray">
+<div class="icon">🦉</div>
+<div class="title title-gray">The Burden of Survival</div>
+<div class="space-y-3">
+<p class="highlight-text">Among the smoking ruins sat a mysterious owl with mismatched eyes—one yellow promising salvation, one purple-black whispering endings. He named it Cinder, though deep down he suspects it had a name long before their meeting.</p>
+<p class="highlight-text">Worse than the physical destruction were the voices that began when he awakened. Soft whispers that could be Selûne's grief or Shar's seduction: "You were chosen for this burden," they say, or "Your people's sacrifice had meaning." Through years of agonized study, Gaja learned the truth—the "Grand Conjunction" was never a healing ritual. It was a method of tearing holes between planes using the life force of an entire community. He had been tricked into committing genocide.</p>
+</div>
+</div>
+
+<div class="card chron-blue">
+<div class="icon">⭐</div>
+<div class="title title-blue">Present Day</div>
+<div class="space-y-3">
+<p class="highlight-text">For twelve years, Ashfoot has lived as a hermit, constantly moving, helping where he can while battling the competing voices in his head. Each good deed is an attempt at penance; each night brings fresh nightmares. Recently, a third voice has joined the whispers—melodious and horrifyingly familiar. It speaks with Nox's cadence: "Companions make the work so much more interesting. Bring them along, dear scholar. The stars are hungry for new songs."</p>
+<p class="highlight-text">Now Ashfoot stands at a crossroads. The voices grow stronger, the signs more urgent, and somewhere in the back of his mind, he wonders: Was Mornhollow's destruction truly an accident, or merely the first note in a much larger, darker symphony?</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+
+<script>
+const h={'Mornhollow':'text-emerald','Selûne':'text-slate','Shar':'text-purple','Nox':'text-purple-light','Cinder':'text-amber','Grand Conjunction':'text-red','Elder Kythara':'text-green-dark','Gaja':'text-gray'};
+document.addEventListener('DOMContentLoaded',()=>{
+document.querySelectorAll('.highlight-text').forEach(e=>{
+let t=e.innerHTML;
+Object.entries(h).forEach(([term,cls])=>{
+t=t.replace(new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\b`,'g'),`<strong class="${cls}">${term}</strong>`);
+});
+e.innerHTML=t;
+});
+});
+</script>
+</body>
+</html>
