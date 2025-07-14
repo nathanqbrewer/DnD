@@ -1,1 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 60px 20px 20px;
+            overflow-x: hidden;
+        }
+        
+        /* Main Container */
+        .dice-roller {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 10px;
+            width: 360px;
+            display: grid;
+            grid-template-columns: 120px 120px 90px;
+            gap: 5px;
+            margin-top: 40px;
+            position: relative;
+        }
+        
+        /* Quick Dice Section */
+        .quick-dice-section {
+            display: flex;
+            flex-direction: column;
+            height: 58px;
+            overflow: hidden;
+        }
+        
+        .quick-dice {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 1fr 1fr;
+            gap: 3px;
+            height: 100%;
+        }
+        
+        .dice-btn {
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 2px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            min-height: 24px;
+        }
+        
+        .dice-btn.d20 {
+            background: #4b5563;
+        }
+        
+        .dice-btn.d20:hover {
+            background: #374151;
+            transform: translateY(-1px);
+        }
+        
+        .dice-btn.other {
+            background: #9ca3af;
+        }
+        
+        .dice-btn.other:hover {
+            background: #6b7280;
+            transform: translateY(-1px);
+        }
+        
+        /* Custom Roll Section */
+        .custom-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 58px;
+        }
+        
+        .custom-roll {
+            background: #f1f5f9;
+            border-radius: 6px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
+        .custom-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+        }
+        
+        .custom-label {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* Input Fields */
+        .input-small,
+        .input-dropdown,
+        .input-modifier {
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 4px 6px;
+            font-size: 12px;
+            text-align: center;
+            background: white;
+        }
+        
+        .input-small {
+            width: 44px;
+        }
+        
+        .input-dropdown {
+            width: 50px;
+        }
+        
+        .input-modifier {
+            width: 52px;
+        }
+        
+        .input-small:focus,
+        .input-dropdown:focus,
+        .input-modifier:focus {
+            outline: none;
+            border-color: #4b5563;
+            box-shadow: 0 0 0 2px rgba(75, 85, 99, 0.1);
+        }
+        
+        .roll-btn {
+            background: #4b5563;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            min-width: 40px;
+        }
+        
+        .roll-btn:hover {
+            background: #374151;
+        }
+        
+        /* Results Section */
+        .results-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .result-display {
+            background: #f1f5f9;
+            border-radius: 6px;
+            padding: 4px;
+            text-align: center;
+            height: 58px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .result-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .result-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 2px;
+        }
+        
+        .result-nat20 {
+            background: #f1f5f9;
+            color: #374151;
+        }
+        
+        .result-nat1 {
+            background: #e5e7eb;
+            color: #1f2937;
+        }
+        
+        .result-max {
+            background: #f9fafb;
+            color: #4b5563;
+        }
+        
+        .history-btn {
+            background: none;
+            border: none;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            opacity: 0.7;
+            transition: opacity 0.15s ease;
+            color: #6b7280;
+        }
+        
+        .history-btn:hover {
+            opacity: 1;
+            background: rgba(0,0,0,0.05);
+        }
+        
+        /* History Panel */
+        .history-panel {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 8px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 10;
+            display: none;
+            width: 140px;
+            max-width: calc(100vw - 40px);
+        }
+        
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .history-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .history-close {
+            background: none;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 2px;
+            color: #6b7280;
+        }
+        
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 6px;
+            background: #f9fafb;
+            border-radius: 4px;
+            margin-bottom: 3px;
+            font-size: 11px;
+        }
+        
+        .history-result {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .history-notation {
+            color: #6b7280;
+        }
+        
+        .history-time {
+            color: #9ca3af;
+            font-size: 10px;
+        }
+        
+        /* Tooltips */
+        .tooltip {
+            position: relative;
+        }
+        
+        .tooltip::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #374151;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 1000;
+        }
+        
+        .tooltip:hover::before {
+            opacity: 1;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 400px) {
+            .dice-roller {
+                width: calc(100vw - 40px);
+                max-width: 360px;
+                grid-template-columns: 1fr 1fr 0.75fr;
+            }
+            
+            .history-panel {
+                width: 120px;
+            }
+            
+            .input-small {
+                width: 40px;
+            }
+            
+            .input-dropdown {
+                width: 44px;
+            }
+            
+            .input-modifier {
+                width: 46px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dice-roller">
+        <!-- Quick Dice Section -->
+        <div class="quick-dice-section">
+            <div class="quick-dice">
+                <button class="dice-btn d20 tooltip" data-tooltip="Roll 1d20" onclick="quickRoll(20)">d20</button>
+                <button class="dice-btn other tooltip" data-tooltip="Roll 1d100" onclick="quickRoll(100)">d100</button>
+                <button class="dice-btn other tooltip" data-tooltip="Roll 1d12" onclick="quickRoll(12)">d12</button>
+                <button class="dice-btn other tooltip" data-tooltip="Roll 1d10" onclick="quickRoll(10)">d10</button>
+                <button class="dice-btn other tooltip" data-tooltip="Roll 1d8" onclick="quickRoll(8)">d8</button>
+                <button class="dice-btn other tooltip" data-tooltip="Roll 1d6" onclick="quickRoll(6)">d6</button>
+                <button class="dice-btn other tooltip" data-tooltip="Roll 1d4" onclick="quickRoll(4)">d4</button>
+                <button class="dice-btn other tooltip" data-tooltip="Roll 1d3" onclick="quickRoll(3)">d3</button>
+            </div>
+        </div>
+        
+        <!-- Custom Roll Section -->
+        <div class="custom-section">
+            <div class="custom-roll">
+                <div class="custom-row">
+                    <input type="number" id="numDice" class="input-small tooltip" value="1" min="1" max="20" data-tooltip="Number of dice">
+                    <span class="custom-label">d</span>
+                    <select id="diceType" class="input-dropdown">
+                        <option value="20" selected>20</option>
+                        <option value="100">100</option>
+                        <option value="12">12</option>
+                        <option value="10">10</option>
+                        <option value="8">8</option>
+                        <option value="6">6</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="custom-row">
+                    <input type="number" id="modifier" class="input-modifier tooltip" placeholder="±0" min="-50" max="50" data-tooltip="Modifier">
+                    <button class="roll-btn" onclick="rollDice()">Roll</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Section -->
+        <div class="results-section">
+            <div id="resultDisplay" class="result-display">
+                <div class="result-value">🎲</div>
+            </div>
+            
+            <!-- History Panel -->
+            <div id="historyPanel" class="history-panel">
+                <div class="history-header">
+                    <span class="history-title">Roll History</span>
+                    <button class="history-close" onclick="toggleHistory()">✕</button>
+                </div>
+                <div id="historyList"></div>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // App state
+        let state = {
+            type: 20,
+            num: 1,
+            mod: 0,
+            result: null,
+            history: [],
+            showHistory: false
+        };
+
+        // Utility functions
+        const utils = {
+            parseInt: (val, options = {}) => {
+                const { min = 0, max = Infinity, def = 0 } = options;
+                const parsed = parseInt(val);
+                return isNaN(parsed) ? def : Math.max(min, Math.min(max, parsed));
+            },
+            
+            rollDie: (sides) => Math.floor(Math.random() * sides) + 1,
+            
+            formatModifier: (val) => val >= 0 ? `+${val}` : `${val}`,
+            
+            getTimeString: () => new Date().toLocaleTimeString()
+        };
+
+        // DOM elements
+        const elements = {
+            numDice: () => document.getElementById('numDice'),
+            diceType: () => document.getElementById('diceType'),
+            modifier: () => document.getElementById('modifier'),
+            resultDisplay: () => document.getElementById('resultDisplay'),
+            historyPanel: () => document.getElementById('historyPanel'),
+            historyList: () => document.getElementById('historyList')
+        };
+
+        // Update dice settings from inputs
+        function updateSettings() {
+            state.num = utils.parseInt(elements.numDice().value, { min: 1, max: 20, def: 1 });
+            state.type = parseInt(elements.diceType().value);
+            state.mod = utils.parseInt(elements.modifier().value, { min: -50, max: 50, def: 0 });
+            
+            elements.numDice().value = state.num;
+            elements.modifier().value = state.mod || '';
+        }
+
+        // Create roll result object
+        function createResult(rolls, modifier, diceType, numDice) {
+            const total = rolls.reduce((sum, roll) => sum + roll, 0) + modifier;
+            const notation = `${numDice}d${diceType}${utils.formatModifier(modifier)}`;
+            
+            return {
+                rolls,
+                mod: modifier,
+                total,
+                notation,
+                isNat20: diceType === 20 && rolls.includes(20),
+                isNat1: diceType === 20 && rolls.includes(1),
+                isMax: rolls.length > 0 && rolls.every(roll => roll === diceType),
+                time: utils.getTimeString()
+            };
+        }
+
+        // Quick roll function
+        function quickRoll(diceType) {
+            const roll = utils.rollDie(diceType);
+            const result = createResult([roll], 0, diceType, 1);
+            
+            // Update state
+            state.type = diceType;
+            state.num = 1;
+            state.mod = 0;
+            state.result = result;
+            state.history = [result, ...state.history.slice(0, 9)];
+            
+            // Update UI
+            elements.numDice().value = 1;
+            elements.diceType().value = diceType;
+            elements.modifier().value = '';
+            
+            updateDisplay();
+        }
+
+        // Custom roll function
+        function rollDice() {
+            updateSettings();
+            
+            const rolls = Array.from({ length: state.num }, () => utils.rollDie(state.type));
+            const result = createResult(rolls, state.mod, state.type, state.num);
+            
+            state.result = result;
+            state.history = [result, ...state.history.slice(0, 9)];
+            
+            updateDisplay();
+        }
+
+        // Update result display
+        function updateDisplay() {
+            const display = elements.resultDisplay();
+            
+            if (!state.result) {
+                display.className = 'result-display';
+                display.innerHTML = '<div class="result-value">🎲</div>';
+                return;
+            }
+            
+            const { result } = state;
+            let className = 'result-display';
+            
+            if (result.isNat20) className += ' result-nat20';
+            else if (result.isNat1) className += ' result-nat1';
+            else if (result.isMax && state.type !== 20) className += ' result-max';
+            
+            display.className = className;
+            
+            const emoji = result.isNat20 ? ' ✨' : result.isNat1 ? ' 💀' : result.isMax && state.type !== 20 ? ' 🔥' : '';
+            const historyBtn = state.history.length > 0 ? 
+                `<button class="history-btn tooltip" data-tooltip="View ${state.history.length} previous rolls" onclick="toggleHistory()">📜</button>` : '';
+            
+            display.innerHTML = `
+                <div class="result-main">
+                    <div class="result-value">${result.total}${emoji}</div>
+                    ${historyBtn}
+                </div>
+            `;
+        }
+
+        // Toggle history panel
+        function toggleHistory() {
+            state.showHistory = !state.showHistory;
+            const panel = elements.historyPanel();
+            
+            if (state.showHistory) {
+                updateHistoryDisplay();
+                panel.style.display = 'block';
+            } else {
+                panel.style.display = 'none';
+            }
+        }
+
+        // Update history display
+        function updateHistoryDisplay() {
+            const list = elements.historyList();
+            
+            list.innerHTML = state.history.map(roll => {
+                const emoji = roll.isNat20 ? ' ✨' : roll.isNat1 ? ' 💀' : '';
+                return `
+                    <div class="history-item">
+                        <span class="history-result">${roll.total}${emoji}</span>
+                        <span class="history-notation">${roll.notation}</span>
+                        <span class="history-time">${roll.time}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initialize app
+        function init() {
+            updateSettings();
+            updateDisplay();
+        }
+
+        // Start the app
+        init();
+    </script>
+</body>
+</html>
